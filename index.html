@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Phone Store - Drag and Drop</title>
+</head>
+
+<body style="background-color:#d0e8ff; text-align:center; font-family:Arial;">
+
+<h1>📱 Mobile Phone Store - Drag and Drop</h1>
+<hr>
+<p>Drag an iPhone or Samsung phone card from below and drop it into your Cart!</p>
+
+<hr>
+
+<h2>Available Phones</h2>
+
+<table border="0" align="center">
+  <tr>
+
+    <!-- Phone 1: iPhone 15 Pro -->
+    <td align="center">
+      <div id="phone1" draggable="true" ondragstart="drag(event)"
+        style="border:2px solid #333; padding:10px; background-color:white; width:140px; border-radius:8px; cursor:grab;">
+        <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=200&q=80" width="100" height="120" onclick="showPhoneDetails('phone1')" style="object-fit:cover; border-radius:6px; cursor:pointer;" alt="iPhone 15 Pro" title="Click to view phone details"><br>
+        <b>iPhone 15 Pro</b><br>
+        Rs. 1,34,900<br>
+        <i>Brand: Apple</i>
+      </div>
+    </td>
+
+    <!-- Phone 2: Samsung Galaxy S24 -->
+    <td align="center">
+      <div id="phone2" draggable="true" ondragstart="drag(event)"
+        style="border:2px solid #333; padding:10px; background-color:white; width:140px; border-radius:8px; cursor:grab;">
+        <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200&q=80" width="100" height="120" onclick="showPhoneDetails('phone2')" style="object-fit:cover; border-radius:6px; cursor:pointer;" alt="Samsung Galaxy S24" title="Click to view phone details"><br>
+        <b>Galaxy S24 Ultra</b><br>
+        Rs. 1,29,999<br>
+        <i>Brand: Samsung</i>
+      </div>
+    </td>
+
+    <!-- Phone 3: iPhone 14 -->
+    <td align="center">
+      <div id="phone3" draggable="true" ondragstart="drag(event)"
+        style="border:2px solid #333; padding:10px; background-color:white; width:140px; border-radius:8px; cursor:grab;">
+        <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=200&q=80" width="100" height="120" onclick="showPhoneDetails('phone3')" style="object-fit:cover; border-radius:6px; cursor:pointer;" alt="iPhone 14" title="Click to view phone details"><br>
+        <b>iPhone 14</b><br>
+        Rs. 69,900<br>
+        <i>Brand: Apple</i>
+      </div>
+    </td>
+
+    <!-- Phone 4: Samsung Galaxy Z Flip -->
+    <td align="center">
+      <div id="phone4" draggable="true" ondragstart="drag(event)"
+        style="border:2px solid #333; padding:10px; background-color:white; width:140px; border-radius:8px; cursor:grab;">
+        <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?w=200&q=80" width="100" height="120" onclick="showPhoneDetails('phone4')" style="object-fit:cover; border-radius:6px; cursor:pointer;" alt="Samsung Galaxy Z Flip" title="Click to view phone details"><br>
+        <b>Galaxy Z Flip 5</b><br>
+        Rs. 99,999<br>
+        <i>Brand: Samsung</i>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<h2>🗺️ Phone Specifications (HTML Image Mapping)</h2>
+<p>Click on any phone section in the showcase banner below (or on any available phone image above) to map and view its technical specifications!</p>
+
+<img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80" width="600" height="180" usemap="#phonemap" alt="Phone Showcase Banner" style="border-radius:8px; border:2px solid #003366; cursor:pointer;">
+
+<map name="phonemap">
+  <!-- Region 1: iPhone 15 Pro -->
+  <area shape="rect" coords="0,0,150,180" href="javascript:void(0)" onclick="showPhoneDetails('phone1')" alt="iPhone 15 Pro" title="Click for iPhone 15 Pro Details">
+  <!-- Region 2: Galaxy S24 Ultra -->
+  <area shape="rect" coords="151,0,300,180" href="javascript:void(0)" onclick="showPhoneDetails('phone2')" alt="Galaxy S24 Ultra" title="Click for Galaxy S24 Ultra Details">
+  <!-- Region 3: iPhone 14 -->
+  <area shape="rect" coords="301,0,450,180" href="javascript:void(0)" onclick="showPhoneDetails('phone3')" alt="iPhone 14" title="Click for iPhone 14 Details">
+  <!-- Region 4: Galaxy Z Flip 5 -->
+  <area shape="rect" coords="451,0,600,180" href="javascript:void(0)" onclick="showPhoneDetails('phone4')" alt="Galaxy Z Flip 5" title="Click for Galaxy Z Flip 5 Details">
+</map>
+
+<br><br>
+
+<!-- Phone Details Display Card -->
+<div id="details-card" style="background-color:white; border:2px solid #003366; width:550px; margin:0 auto; padding:20px; text-align:left; border-radius:10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+  <h3 id="detail-title" style="margin-top:0; color:#003366; text-align:center;">📱 Select a phone to view details</h3>
+  <div id="detail-content" style="display:none; flex-direction:row; gap:20px; align-items:center;">
+    <img id="detail-img" src="" width="120" height="150" style="object-fit:cover; border-radius:8px; border:1px solid #ccc;" alt="Selected Phone">
+    <div style="font-size:14px; line-height:1.6;">
+      <p style="margin:5px 0;"><b>Brand:</b> <span id="detail-brand"></span></p>
+      <p style="margin:5px 0;"><b>Price:</b> <span id="detail-price" style="color:green; font-weight:bold;"></span></p>
+      <p style="margin:5px 0;"><b>Display:</b> <span id="detail-display"></span></p>
+      <p style="margin:5px 0;"><b>Processor:</b> <span id="detail-processor"></span></p>
+      <p style="margin:5px 0;"><b>Camera:</b> <span id="detail-camera"></span></p>
+      <p style="margin:5px 0;"><b>Battery:</b> <span id="detail-battery"></span></p>
+    </div>
+  </div>
+  <p id="detail-prompt" style="text-align:center; color:gray; font-style:italic; margin:10px 0;">(Click any phone image or image map region to view specs here)</p>
+</div>
+
+<hr>
+
+<h2>🛒 My Cart</h2>
+
+<div id="cart"
+  ondrop="drop(event)"
+  ondragover="allowDrop(event)"
+  style="border:3px dashed #003366;
+         background-color:#eaf4ff;
+         padding:20px;
+         min-height:100px;
+         width:600px;
+         margin:0 auto;
+         display:flex;
+         flex-wrap:wrap;
+         gap:10px;
+         justify-content:center;
+         border-radius:10px;">
+  <p id="cart-msg" style="color:gray;">⬇ Drop phones here</p>
+</div>
+
+<hr>
+
+<h2>📍 Find Nearest Store</h2>
+<p>Click below to find your location and locate the nearest store using Latitude and Longitude.</p>
+<button onclick="findNearestStore()" style="padding:10px 20px; font-size:16px; cursor:pointer; border-radius:5px;">Find Nearest Store</button>
+<br><br>
+<div id="location-output" style="background-color:white; border:1px solid #333; width:400px; margin:0 auto; padding:15px; text-align:left; border-radius:8px;">
+  <p><b>Your Location:</b> <span id="user-coords">Not detected</span></p>
+  <p><b>Nearest Store:</b> Tech City Store</p>
+  <p><b>Store Coordinates:</b> Lat 12.9716° N, Long 77.5946° E</p>
+  <p><b>Distance:</b> <span id="distance">--</span></p>
+</div>
+
+<hr>
+
+<h2>📝 Registration Form</h2>
+<form onsubmit="registerUser(event)" style="background-color:white; border:1px solid #333; width:400px; margin:0 auto; padding:20px; text-align:left; border-radius:8px;">
+  <label for="name"><b>Full Name:</b></label><br>
+  <input type="text" id="name" required style="width:100%; padding:8px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;"><br>
+
+  <label for="email"><b>Email Address:</b></label><br>
+  <input type="email" id="email" required style="width:100%; padding:8px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;"><br>
+
+  <label for="phone"><b>Phone Number:</b></label><br>
+  <input type="tel" id="phone" required style="width:100%; padding:8px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;"><br>
+
+  <label for="city"><b>City:</b></label><br>
+  <input type="text" id="city" required style="width:100%; padding:8px; margin-top:5px; margin-bottom:15px; box-sizing:border-box;"><br>
+
+  <button type="submit" style="width:100%; padding:10px; background-color:#003366; color:white; font-size:16px; border:none; cursor:pointer; border-radius:5px;">Register Now</button>
+</form>
+<p id="registration-msg" style="color:green; font-weight:bold;"></p>
+
+<hr>
+
+<h2>🎬 Watch Our Video</h2>
+
+<video width="500" controls style="border:3px solid #003366; border-radius:8px;">
+  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<hr>
+
+<h2>📞 Contact Us</h2>
+<p>Email: support@phoneshop.com</p>
+<p>Phone: +91 98765 43210</p>
+<p>Address: 123 Phone Street, Tech City, India</p>
+
+<hr>
+<p>Copyright 2025 Phone Store. All rights reserved.</p>
+
+<script>
+// Phone Details & Image Mapping Data
+var phoneData = {
+  phone1: {
+    title: "iPhone 15 Pro",
+    brand: "Apple",
+    price: "Rs. 1,34,900",
+    display: "6.1-inch Super Retina XDR (120Hz ProMotion)",
+    processor: "A17 Pro Chip (3nm)",
+    camera: "48MP Main + 12MP Ultra Wide + 12MP Telephoto",
+    battery: "Up to 23 hours video playback",
+    img: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=200&q=80"
+  },
+  phone2: {
+    title: "Galaxy S24 Ultra",
+    brand: "Samsung",
+    price: "Rs. 1,29,999",
+    display: "6.8-inch Dynamic AMOLED 2X (120Hz, 2600 nits)",
+    processor: "Snapdragon 8 Gen 3 for Galaxy",
+    camera: "200MP Main + 50MP Periscope + 12MP Ultra Wide",
+    battery: "5000 mAh with 45W Super Fast Charging",
+    img: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=200&q=80"
+  },
+  phone3: {
+    title: "iPhone 14",
+    brand: "Apple",
+    price: "Rs. 69,900",
+    display: "6.1-inch Super Retina XDR display",
+    processor: "A15 Bionic Chip with 5-core GPU",
+    camera: "12MP Main + 12MP Ultra Wide",
+    battery: "Up to 20 hours video playback",
+    img: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=200&q=80"
+  },
+  phone4: {
+    title: "Galaxy Z Flip 5",
+    brand: "Samsung",
+    price: "Rs. 99,999",
+    display: "6.7-inch Dynamic AMOLED 2X + 3.4-inch Cover Screen",
+    processor: "Snapdragon 8 Gen 2 for Galaxy",
+    camera: "12MP Main + 12MP Ultra Wide",
+    battery: "3700 mAh Dual Battery",
+    img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=200&q=80"
+  }
+};
+
+function showPhoneDetails(phoneId) {
+  var data = phoneData[phoneId];
+  if (!data) return;
+
+  document.getElementById("detail-title").innerText = "📱 " + data.title + " Specifications";
+  document.getElementById("detail-brand").innerText = data.brand;
+  document.getElementById("detail-price").innerText = data.price;
+  document.getElementById("detail-display").innerText = data.display;
+  document.getElementById("detail-processor").innerText = data.processor;
+  document.getElementById("detail-camera").innerText = data.camera;
+  document.getElementById("detail-battery").innerText = data.battery;
+  document.getElementById("detail-img").src = data.img;
+
+  document.getElementById("detail-content").style.display = "flex";
+  document.getElementById("detail-prompt").style.display = "none";
+
+  var card = document.getElementById("details-card");
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// Drag and Drop functions
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  var card = ev.target.closest('[draggable="true"]') || ev.target;
+  ev.dataTransfer.setData("text", card.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var el = document.getElementById(data);
+  var msg = document.getElementById("cart-msg");
+  if (msg) {
+    msg.remove();
+  }
+  document.getElementById("cart").appendChild(el);
+}
+
+// Geolocation - Nearest Store Finder
+function findNearestStore() {
+  var coordsEl = document.getElementById("user-coords");
+  var distEl = document.getElementById("distance");
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+      coordsEl.innerText = "Lat " + lat.toFixed(4) + "°, Long " + lon.toFixed(4) + "°";
+      
+      var storeLat = 12.9716;
+      var storeLon = 77.5946;
+
+      var dist = Math.sqrt(Math.pow(lat - storeLat, 2) + Math.pow(lon - storeLon, 2)) * 111;
+      distEl.innerText = dist.toFixed(2) + " km away";
+    }, function() {
+      coordsEl.innerText = "Permission denied or unavailable.";
+      distEl.innerText = "N/A";
+    });
+  } else {
+    coordsEl.innerText = "Geolocation not supported by browser.";
+  }
+}
+
+// Registration Form Handler
+function registerUser(event) {
+  event.preventDefault();
+  var name = document.getElementById("name").value;
+  document.getElementById("registration-msg").innerText = "Thank you, " + name + "! Registration successful.";
+}
+</script>
+
+</body>
+</html>
